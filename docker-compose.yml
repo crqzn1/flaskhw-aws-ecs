@@ -1,7 +1,12 @@
 version: '3'
 services:
   web:
-    image: 111122223333.dkr.ecr.ap-southeast-2.amazonaws.com/flaskhw:0.0.2
+    image: 631274359732.dkr.ecr.ap-southeast-2.amazonaws.com/flaskhw:0.0.2
     ports:
       - "5000:5000"
-
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: flask-ecs-log
+        awslogs-region: ap-southeast-2
+        awslogs-stream-prefix: web

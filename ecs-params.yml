@@ -1,6 +1,6 @@
 version: 1
 task_definition:
-  task_execution_role: my-ecsTaskExecutionRole
+  task_execution_role: txi-ecsTaskExecutionRole
   ecs_network_mode: awsvpc
   os_family: Linux
   task_size:
@@ -10,8 +10,8 @@ run_params:
   network_configuration:
     awsvpc_configuration:
       subnets:
-        - "subnet-1111222233334444a"
-        - "subnet-1111222233334444b"
+        - "subnet-08c3269dc855d34a8"
+        - "subnet-030f5f526593cedf0"
       security_groups:
-        - "sg-1111222233334444c"
+        - "sg-01f45c1a1cefa8dd7"
       assign_public_ip: ENABLED

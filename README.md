@@ -92,11 +92,35 @@ $ ecs-cli compose --project-name my-fargate-proj2 service up
 
 ### check service
 ```bash
-$ ecs-cli compose --project-name my-fargate-proj2 service ps
+$ ecs-cli compose --project-name my-fargate-proj3 service ps
 	Name                                                      State    Ports                        TaskDefinition       Health
 	my-fargate-cluster/7a31635b615942e6be5d029ce19b8a38/web  RUNNING  3.24.214.111:5000->5000/tcp  my-fargate-proj2:1  UNKNOWN
 ```
 >check 3.24.214.111:5000
+
+### Scale Service
+```bash
+$ ecs-cli compose --project-name my-fargate-proj2 service scale 2
+    INFO[0000] Updated ECS service successfully              desiredCount=2 force-deployment=false service=my-fargate-proj3
+$ ecs-cli compose --project-name my-fargate-proj3 service ps
+    Name                                                      State    Ports                        TaskDefinition      Health
+    my-fargate-cluster/2642b3f954164097bfe5d32e7ebf0820/web  RUNNING  3.26.36.133:5000->5000/tcp   my-fargate-proj3:2  UNKNOWN
+    my-fargate-cluster/e5308d85acef457895417bb6529ca728/web  RUNNING  3.24.135.156:5000->5000/tcp  my-fargate-proj3:2  UNKNOWN
+```
+
+### Use CloudWatch
+> update docker-compose.yml add
+```yml
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: flask-ecs-log
+        awslogs-region: ap-southeast-2
+        awslogs-stream-prefix: web
+```
+```bash
+$ ecs-cli compose --project-name my-fargate-proj4 service up
+```
 
 ### End Service
 ```bash
