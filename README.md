@@ -119,7 +119,7 @@ $ ecs-cli compose --project-name my-fargate-proj3 service ps
         awslogs-stream-prefix: web
 ```
 ```bash
-$ ecs-cli compose --project-name my-fargate-proj4 service up
+$ ecs-cli compose --project-name my-fargate-proj4 service up --create-log-groups
 ```
 
 ### End Service
